@@ -1,4 +1,4 @@
 
-FROM llslim/docker-apache-php:5
+FROM llslim/docker-phpcli:php5.x
 
 RUN composer global require drush/drush drupal/console
