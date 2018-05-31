@@ -1,8 +1,14 @@
 
 FROM llslim/docker-phpcli:latest
 
-RUN composer global require drush/drush  drupal/console
+# install the drush launcher
+RUN curl -OL https://github.com/drush-ops/drush-launcher/releases/download/0.6.0/drush.phar \
+  && mv drush.phar /usr/local/bin/drush \
+  && chmod +x /usr/local/bin/drush
 
-RUN /home/dev/.composer/vendor/bin/drush init -y
+# install the drupal console launcher
+RUN curl https://drupalconsole.com/installer -L -o drupal.phar \
+  && mv drupal.phar /usr/local/bin/drupal \
+  && chmod +x /usr/local/bin/drupal
 
 ENTRYPOINT /bin/bash
